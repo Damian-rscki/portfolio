@@ -249,7 +249,7 @@
 
   .coverage-row {
     display: grid;
-    grid-template-columns: 230px 1fr 100px 230px;
+    grid-template-columns: 230px 1fr 220px;
     gap: 20px;
     align-items: start;
     padding: 20px 0;
@@ -281,10 +281,6 @@
     color: var(--ink-faint);
   }
 
-  .row-status {
-    display: flex;
-  }
-
   .row-docs {
     display: flex;
     flex-direction: column;
@@ -314,7 +310,6 @@
       grid-template-columns: 1fr;
       gap: 10px;
     }
-    .row-status { order: -1; }
   }
 
   .card-ticker {
@@ -322,28 +317,6 @@
     font-size: 12px;
     letter-spacing: 0.06em;
     color: var(--ink-muted);
-  }
-
-  /* ---------- Badges ---------- */
-
-  .badge {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10.5px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 3px 9px;
-    border-radius: 999px;
-    white-space: nowrap;
-  }
-
-  .badge-pending {
-    color: var(--gold);
-    border: 1px solid var(--gold);
-  }
-
-  .badge-live {
-    color: var(--green);
-    border: 1px solid var(--green);
   }
 
   /* ---------- Single-item cards (Presentations / About) ---------- */
@@ -357,13 +330,6 @@
     gap: 10px;
     background: #12182B05;
     max-width: 480px;
-  }
-
-  .card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 10px;
   }
 
   .card h3 {
@@ -469,7 +435,6 @@
               <h3>Real Estate</h3>
             </div>
             <p class="row-desc">Acquisition analysis for an already-licensed 4-bed HMO in Exeter (126 Pinhoe Road), modeled across financing and layout scenarios against yield and ROI targets.</p>
-            <div class="row-status"><span class="badge badge-live">Live</span></div>
             <div class="row-docs">
               <a href="documents/pinhoe-road-hmo-analysis.pdf" target="_blank">Full model (PDF)</a>
               <a href="documents/pinhoe-road-hmo-presentation.pdf" target="_blank">Investor deck (PDF)</a>
@@ -482,7 +447,6 @@
               <h3>DCF Models</h3>
             </div>
             <p class="row-desc">Discounted cash flow valuation of Eli Lilly and Co. (NYSE: LLY), projecting revenue and free cash flow through 2030 to derive a fair value per share against the market price.</p>
-            <div class="row-status"><span class="badge badge-live">Buy</span></div>
             <div class="row-docs">
               <a href="documents/lly-dcf-model.pdf" target="_blank">DCF model (PDF)</a>
             </div>
@@ -494,7 +458,6 @@
               <h3>Investment Case</h3>
             </div>
             <p class="row-desc coming-soon">Write-up and downloadable PDF pending.</p>
-            <div class="row-status"><span class="badge badge-pending">Coming soon</span></div>
             <div class="row-docs"><span class="none">None yet</span></div>
           </div>
 
@@ -504,7 +467,6 @@
               <h3>Startup Advisory Models</h3>
             </div>
             <p class="row-desc">Sector prioritization model for Kinematic Trees, a robotics startup, ranking target market opportunities (manufacturing, healthcare, education &amp; creative) by market size, growth rate, and deployment cost.</p>
-            <div class="row-status"><span class="badge badge-live">Live</span></div>
             <div class="row-docs">
               <a href="documents/kinematic-trees-sector-model.pdf" target="_blank">Sector model (PDF)</a>
             </div>
@@ -520,10 +482,7 @@
           <h2>Presentations</h2>
         </div>
         <div class="card">
-          <div class="card-top">
-            <span class="card-ticker">PRES &middot; UMNIC</span>
-            <span class="badge badge-pending">Coming soon</span>
-          </div>
+          <span class="card-ticker">PRES &middot; UMNIC</span>
           <h3>UMushroom National Investment Challenge</h3>
           <p class="coming-soon">Competition deck pending upload.</p>
         </div>
@@ -537,10 +496,7 @@
           <h2>About</h2>
         </div>
         <div class="card">
-          <div class="card-top">
-            <span class="card-ticker">BIO</span>
-            <span class="badge badge-pending">Coming soon</span>
-          </div>
+          <span class="card-ticker">BIO</span>
           <p class="coming-soon">Bio pending.</p>
         </div>
       </div>
