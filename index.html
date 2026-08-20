@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Damian De Vaux - Finance Portfolio</title>
+<meta name="description" content="Finance portfolio of Damian De Vaux: DCF models, investment cases, startup advisory work, and property analysis, presented as an equity-research coverage sheet.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #ECEEE9;
+    --ink: #12182B;
+    --ink-muted: #12182B99;
+    --ink-faint: #12182B4d;
+    --green: #1F5C3F;
+    --gold: #8A6D1F;
+    --rule: #12182B26;
+    --max-width: 960px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .mono {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Masthead ---------- */
+
+  .masthead {
+    border-bottom: 1px solid var(--rule);
+    padding: 28px 0 0;
+  }
+
+  .masthead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding-bottom: 18px;
+  }
+
+  .masthead-name {
+    padding-bottom: 6px;
+  }
+
+  .masthead-name h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    line-height: 1.05;
+  }
+
+  .masthead-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-top: 8px;
+  }
+
+  .masthead-links {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    padding: 16px 0 22px;
+  }
+
+  .masthead-links a {
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink-faint);
+    padding-bottom: 1px;
+  }
+
+  .masthead-links a:hover {
+    border-bottom-color: var(--ink);
+  }
+
+  /* ---------- Ticker strip ---------- */
+
+  .ticker {
+    border-bottom: 1px solid var(--rule);
+    background: #12182B08;
+  }
+
+  .ticker-row {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .ticker-row span:nth-child(odd) { color: var(--green); }
+  .ticker-row span:nth-child(even) { color: var(--gold); }
+
+  /* ---------- Nav ---------- */
+
+  nav.section-nav {
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+    z-index: 10;
+  }
+
+  nav.section-nav .wrap {
+    display: flex;
+    gap: 24px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    flex-wrap: wrap;
+  }
+
+  nav.section-nav a {
+    text-decoration: none;
+    color: var(--ink-muted);
+  }
+
+  nav.section-nav a:hover {
+    color: var(--ink);
+  }
+
+  /* ---------- Sections ---------- */
+
+  section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  section:last-of-type {
+    border-bottom: none;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .section-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 3px 8px;
+  }
+
+  .section-head h2 {
+    font-size: 1.6rem;
+  }
+
+  .section-intro {
+    color: var(--ink-muted);
+    max-width: 62ch;
+    margin-bottom: 28px;
+  }
+
+  /* ---------- Coverage cards ---------- */
+
+  .coverage-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  @media (max-width: 640px) {
+    .coverage-grid { grid-template-columns: 1fr; }
+  }
+
+  .card {
+    border: 1px dashed var(--ink-faint);
+    border-radius: 6px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #12182B05;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .card-ticker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+  }
+
+  .badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .badge-pending {
+    color: var(--gold);
+    border: 1px solid var(--gold);
+  }
+
+  .badge-live {
+    color: var(--green);
+    border: 1px solid var(--green);
+  }
+
+  .card h3 {
+    font-size: 1.15rem;
+  }
+
+  .card p {
+    margin: 0;
+    color: var(--ink-muted);
+    font-size: 14.5px;
+  }
+
+  .card .coming-soon {
+    font-style: italic;
+    color: var(--ink-faint);
+    font-size: 14px;
+    margin-top: auto;
+    padding-top: 6px;
+  }
+
+  /* ---------- Research note (filled-in coverage item) ---------- */
+
+  .note {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 26px;
+    margin-bottom: 18px;
+    background: #ffffff55;
+  }
+
+  .note-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+
+  .note h3 {
+    font-size: 1.3rem;
+    margin-top: 4px;
+  }
+
+  .note-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-bottom: 16px;
+  }
+
+  .note p {
+    color: var(--ink-muted);
+    font-size: 14.5px;
+    margin: 0 0 14px;
+  }
+
+  .note ul {
+    margin: 0 0 16px;
+    padding-left: 20px;
+    color: var(--ink-muted);
+    font-size: 14.5px;
+  }
+
+  .note ul li { margin-bottom: 6px; }
+
+  .note table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    margin-bottom: 16px;
+  }
+
+  .note table caption {
+    text-align: left;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+  }
+
+  .note th, .note td {
+    text-align: right;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--rule);
+    white-space: nowrap;
+  }
+
+  .note th:first-child, .note td:first-child {
+    text-align: left;
+    white-space: normal;
+  }
+
+  .note thead th {
+    color: var(--ink-faint);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 11px;
+  }
+
+  .pass { color: var(--green); font-weight: 600; }
+  .fail { color: var(--gold); font-weight: 600; }
+
+  .note-table-wrap {
+    overflow-x: auto;
+  }
+
+  .note-downloads {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    padding-top: 4px;
+    border-top: 1px dashed var(--rule);
+    margin-top: 4px;
+    padding-top: 14px;
+  }
+
+  .note-downloads a {
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 1px solid var(--ink-faint);
+  }
+
+  .note-downloads a:hover {
+    border-bottom-color: var(--ink);
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    padding: 32px 0 48px;
+  }
+
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+
+  footer a {
+    text-decoration: none;
+    color: var(--ink-muted);
+    border-bottom: 1px solid var(--ink-faint);
+  }
+
+  footer a:hover {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+  }
+</style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="wrap">
+      <div class="masthead-top">
+        <span>Coverage Initiation</span>
+        <span>Finance Portfolio</span>
+      </div>
+      <div class="masthead-name">
+        <h1>Damian De Vaux</h1>
+        <div class="masthead-sub">Formerly Damian Rusecki</div>
+      </div>
+      <div class="masthead-links">
+        <a href="mailto:dr555@exeter.ac.uk">dr555@exeter.ac.uk</a>
+        <a href="https://www.linkedin.com/in/damiandevaux" target="_blank" rel="noopener">linkedin.com/in/damiandevaux</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="ticker">
+    <div class="ticker-row">
+      <span>DCF Modeling</span>
+      <span>Investment Case</span>
+      <span>Startup Advisory</span>
+      <span>Property Analysis</span>
+      <span>Equity Research</span>
+      <span>Financial Modeling</span>
+    </div>
+  </div>
+
+  <nav class="section-nav">
+    <div class="wrap">
+      <a href="#coverage">Coverage</a>
+      <a href="#presentations">Presentations</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="coverage">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-tag">01</span>
+          <h2>Coverage</h2>
+        </div>
+        <p class="section-intro">Financial models and analysis pieces, presented as coverage notes. Each links to the underlying PDF once finalized.</p>
+
+        <div class="note">
+          <div class="note-top">
+            <div>
+              <span class="card-ticker">PROP &middot; HMO</span>
+              <h3>126 Pinhoe Road, Exeter &mdash; HMO Investment Analysis</h3>
+            </div>
+            <span class="badge badge-live">Live</span>
+          </div>
+          <div class="note-sub">4-Bed Terrace, Class C4 &middot; EX4 7HJ</div>
+
+          <p>An acquisition analysis for an already-licensed 4-bedroom HMO between Exeter's two university campuses. The property holds a certificate of lawfulness for 4 unrelated occupants (Class C4) and has planning potential for a 5th bedroom via conversion of the ground-floor living room.</p>
+
+          <ul>
+            <li>Four comparable sales on the same street in the prior 18 months averaged &pound;301,000 (range &pound;294,000&ndash;&pound;315,000), all sold in better condition than this property, which needs a substantial refurbishment.</li>
+            <li>Modeled across both the &pound;325,000 asking price and a &pound;270,000 negotiated price, and both the existing 4-bed layout and a 5-bed layout with the living-room conversion, using a shared refurbishment budget (&pound;35,995 for 4-bed, &pound;43,470 for 5-bed) and consistent financing assumptions (75% LTV, 5.5% mortgage rate, 12% management fee).</li>
+            <li>Returns benchmarked against 8% gross yield, 6% net yield, and 8% cash-on-cash ROI targets.</li>
+          </ul>
+
+          <div class="note-table-wrap">
+            <table>
+              <caption>Returns by scenario</caption>
+              <thead>
+                <tr>
+                  <th>Scenario</th>
+                  <th>Gross yield</th>
+                  <th>Net yield</th>
+                  <th>Cash-on-cash ROI</th>
+                  <th>Targets met</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>4-bed, asking &pound;325k</td>
+                  <td>8.49%</td>
+                  <td class="fail">2.07%</td>
+                  <td class="fail">4.68%</td>
+                  <td>1 of 3</td>
+                </tr>
+                <tr>
+                  <td>4-bed, negotiated &pound;270k</td>
+                  <td>10.22%</td>
+                  <td class="fail">3.33%</td>
+                  <td class="fail">7.22%</td>
+                  <td>1 of 3</td>
+                </tr>
+                <tr>
+                  <td>5-bed, asking &pound;325k</td>
+                  <td>10.52%</td>
+                  <td class="fail">3.74%</td>
+                  <td class="pass">8.03%</td>
+                  <td>2 of 3</td>
+                </tr>
+                <tr>
+                  <td>5-bed, negotiated &pound;270k</td>
+                  <td class="pass">14.22%</td>
+                  <td class="pass">7.27%</td>
+                  <td class="pass">14.59%</td>
+                  <td>3 of 3</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note-downloads">
+            <a href="documents/pinhoe-road-hmo-analysis.pdf" target="_blank">Full model (PDF)</a>
+            <a href="documents/pinhoe-road-hmo-valuation.pdf" target="_blank">Valuation detail (PDF)</a>
+            <a href="documents/pinhoe-road-hmo-presentation.pdf" target="_blank">Investor deck (PDF)</a>
+          </div>
+        </div>
+
+        <div class="coverage-grid">
+          <div class="card">
+            <div class="card-top">
+              <span class="card-ticker">MODL &middot; DCF</span>
+              <span class="badge badge-pending">Coming soon</span>
+            </div>
+            <h3>DCF Models</h3>
+            <p class="coming-soon">Discounted cash flow models. Write-up and downloadable PDF pending.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-top">
+              <span class="card-ticker">CASE &middot; INVC</span>
+              <span class="badge badge-pending">Coming soon</span>
+            </div>
+            <h3>Investment Case</h3>
+            <p class="coming-soon">Investment case write-up. Details and downloadable PDF pending.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-top">
+              <span class="card-ticker">ADVY &middot; STUP</span>
+              <span class="badge badge-pending">Coming soon</span>
+            </div>
+            <h3>Startup Advisory Models</h3>
+            <p class="coming-soon">Advisory models built for startups. Details and downloadable PDF pending.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="presentations">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-tag">02</span>
+          <h2>Presentations</h2>
+        </div>
+        <div class="card" style="max-width: 480px;">
+          <div class="card-top">
+            <span class="card-ticker">PRES &middot; UMNIC</span>
+            <span class="badge badge-pending">Coming soon</span>
+          </div>
+          <h3>UMushroom National Investment Challenge</h3>
+          <p class="coming-soon">Competition deck pending upload.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-tag">03</span>
+          <h2>About</h2>
+        </div>
+        <div class="card" style="max-width: 480px;">
+          <div class="card-top">
+            <span class="card-ticker">BIO</span>
+            <span class="badge badge-pending">Coming soon</span>
+          </div>
+          <p class="coming-soon">Bio pending.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="wrap">
+      <span>&copy; 2026 Damian De Vaux</span>
+      <span>
+        <a href="mailto:dr555@exeter.ac.uk">Email</a>
+        &nbsp;&nbsp;
+        <a href="https://www.linkedin.com/in/damiandevaux" target="_blank" rel="noopener">LinkedIn</a>
+      </span>
+    </div>
+  </footer>
+
+</body>
+</html>
