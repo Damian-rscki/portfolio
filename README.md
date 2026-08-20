@@ -30,5 +30,5 @@ Ctrl+C in the terminal it's running in.
 
 ## Structure
 
-- `index.html` — the entire site (markup + inline styles)
-- `documents/` — PDFs linked from the Coverage and Presentations sections
+- `index.html` - the entire site (markup + inline styles)
+- `documents/` - PDFs linked from the Coverage and Presentations sections

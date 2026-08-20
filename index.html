@@ -17,7 +17,7 @@
     --green: #1F5C3F;
     --gold: #8A6D1F;
     --rule: #12182B26;
-    --max-width: 960px;
+    --max-width: 1040px;
   }
 
   * { box-sizing: border-box; }
@@ -26,6 +26,8 @@
 
   body {
     margin: 0;
+    overflow-x: hidden;
+    border-top: 3px solid var(--ink);
     background: var(--paper);
     color: var(--ink);
     font-family: 'IBM Plex Sans', sans-serif;
@@ -57,23 +59,30 @@
 
   .masthead {
     border-bottom: 1px solid var(--rule);
-    padding: 28px 0 0;
+    padding: 26px 0 0;
   }
 
   .masthead-top {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    flex-wrap: wrap;
+    row-gap: 4px;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--ink-faint);
-    padding-bottom: 18px;
+    padding-bottom: 20px;
   }
 
-  .masthead-name {
-    padding-bottom: 6px;
+  .masthead-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    flex-wrap: wrap;
+    padding-bottom: 22px;
   }
 
   .masthead-name h1 {
@@ -90,13 +99,21 @@
     margin-top: 8px;
   }
 
+  .masthead-desc {
+    max-width: 42ch;
+    color: var(--ink-muted);
+    font-size: 14.5px;
+    margin: 12px 0 0;
+  }
+
   .masthead-links {
     display: flex;
-    gap: 18px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12.5px;
-    padding: 16px 0 22px;
+    flex-shrink: 0;
   }
 
   .masthead-links a {
@@ -107,6 +124,11 @@
 
   .masthead-links a:hover {
     border-bottom-color: var(--ink);
+  }
+
+  @media (max-width: 640px) {
+    .masthead-body { align-items: flex-start; }
+    .masthead-links { align-items: flex-start; }
   }
 
   /* ---------- Ticker strip ---------- */
@@ -123,7 +145,6 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 10px 20px;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
     letter-spacing: 0.06em;
@@ -131,8 +152,23 @@
     font-weight: 500;
   }
 
+  .ticker-row span {
+    padding: 2px 16px;
+    border-left: 1px solid var(--rule);
+  }
+
+  .ticker-row span:first-child {
+    border-left: none;
+    padding-left: 0;
+  }
+
   .ticker-row span:nth-child(odd) { color: var(--green); }
   .ticker-row span:nth-child(even) { color: var(--gold); }
+
+  @media (max-width: 640px) {
+    .ticker-row { font-size: 11px; }
+    .ticker-row span { padding: 2px 10px; }
+  }
 
   /* ---------- Nav ---------- */
 
@@ -146,7 +182,7 @@
 
   nav.section-nav .wrap {
     display: flex;
-    gap: 24px;
+    gap: 28px;
     padding-top: 12px;
     padding-bottom: 12px;
     font-family: 'IBM Plex Mono', monospace;
@@ -180,7 +216,7 @@
     display: flex;
     align-items: baseline;
     gap: 12px;
-    margin-bottom: 28px;
+    margin-bottom: 8px;
     flex-wrap: wrap;
   }
 
@@ -202,36 +238,83 @@
   .section-intro {
     color: var(--ink-muted);
     max-width: 62ch;
-    margin-bottom: 28px;
+    margin: 0 0 32px;
   }
 
-  /* ---------- Coverage cards ---------- */
+  /* ---------- Coverage list ---------- */
 
-  .coverage-grid {
+  .coverage-list {
+    border-top: 1px solid var(--rule);
+  }
+
+  .coverage-row {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+    grid-template-columns: 230px 1fr 100px 230px;
+    gap: 20px;
+    align-items: start;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
   }
 
-  @media (max-width: 640px) {
-    .coverage-grid { grid-template-columns: 1fr; }
+  .coverage-row.is-pending {
+    border-bottom-style: dashed;
+    border-bottom-color: var(--ink-faint);
   }
 
-  .card {
-    border: 1px dashed var(--ink-faint);
-    border-radius: 6px;
-    padding: 22px;
+  .row-name .card-ticker {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .row-name h3 {
+    font-size: 1.05rem;
+  }
+
+  .row-desc {
+    color: var(--ink-muted);
+    font-size: 14.5px;
+    margin: 0;
+  }
+
+  .row-desc.coming-soon {
+    font-style: italic;
+    color: var(--ink-faint);
+  }
+
+  .row-status {
+    display: flex;
+  }
+
+  .row-docs {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    background: #12182B05;
+    gap: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
   }
 
-  .card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 10px;
+  .row-docs a {
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 1px solid var(--ink-faint);
+    width: fit-content;
+  }
+
+  .row-docs a:hover {
+    border-bottom-color: var(--ink);
+  }
+
+  .row-docs .none {
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  @media (max-width: 760px) {
+    .coverage-row {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .row-status { order: -1; }
   }
 
   .card-ticker {
@@ -240,6 +323,8 @@
     letter-spacing: 0.06em;
     color: var(--ink-muted);
   }
+
+  /* ---------- Badges ---------- */
 
   .badge {
     font-family: 'IBM Plex Mono', monospace;
@@ -261,6 +346,26 @@
     border: 1px solid var(--green);
   }
 
+  /* ---------- Single-item cards (Presentations / About) ---------- */
+
+  .card {
+    border: 1px dashed var(--ink-faint);
+    border-radius: 6px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #12182B05;
+    max-width: 480px;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
   .card h3 {
     font-size: 1.15rem;
   }
@@ -275,118 +380,6 @@
     font-style: italic;
     color: var(--ink-faint);
     font-size: 14px;
-    margin-top: auto;
-    padding-top: 6px;
-  }
-
-  /* ---------- Research note (filled-in coverage item) ---------- */
-
-  .note {
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: 26px;
-    margin-bottom: 18px;
-    background: #ffffff55;
-  }
-
-  .note-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 4px;
-  }
-
-  .note h3 {
-    font-size: 1.3rem;
-    margin-top: 4px;
-  }
-
-  .note-sub {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    color: var(--ink-muted);
-    margin-bottom: 16px;
-  }
-
-  .note p {
-    color: var(--ink-muted);
-    font-size: 14.5px;
-    margin: 0 0 14px;
-  }
-
-  .note ul {
-    margin: 0 0 16px;
-    padding-left: 20px;
-    color: var(--ink-muted);
-    font-size: 14.5px;
-  }
-
-  .note ul li { margin-bottom: 6px; }
-
-  .note table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12.5px;
-    margin-bottom: 16px;
-  }
-
-  .note table caption {
-    text-align: left;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 12px;
-    color: var(--ink-faint);
-    margin-bottom: 8px;
-  }
-
-  .note th, .note td {
-    text-align: right;
-    padding: 8px 10px;
-    border-bottom: 1px solid var(--rule);
-    white-space: nowrap;
-  }
-
-  .note th:first-child, .note td:first-child {
-    text-align: left;
-    white-space: normal;
-  }
-
-  .note thead th {
-    color: var(--ink-faint);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    font-size: 11px;
-  }
-
-  .pass { color: var(--green); font-weight: 600; }
-  .fail { color: var(--gold); font-weight: 600; }
-
-  .note-table-wrap {
-    overflow-x: auto;
-  }
-
-  .note-downloads {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12.5px;
-    padding-top: 4px;
-    border-top: 1px dashed var(--rule);
-    margin-top: 4px;
-    padding-top: 14px;
-  }
-
-  .note-downloads a {
-    text-decoration: none;
-    color: var(--ink);
-    border-bottom: 1px solid var(--ink-faint);
-  }
-
-  .note-downloads a:hover {
-    border-bottom-color: var(--ink);
   }
 
   /* ---------- Footer ---------- */
@@ -426,13 +419,16 @@
         <span>Coverage Initiation</span>
         <span>Finance Portfolio</span>
       </div>
-      <div class="masthead-name">
-        <h1>Damian De Vaux</h1>
-        <div class="masthead-sub">Formerly Damian Rusecki</div>
-      </div>
-      <div class="masthead-links">
-        <a href="mailto:dr555@exeter.ac.uk">dr555@exeter.ac.uk</a>
-        <a href="https://www.linkedin.com/in/damiandevaux" target="_blank" rel="noopener">linkedin.com/in/damiandevaux</a>
+      <div class="masthead-body">
+        <div class="masthead-name">
+          <h1>Damian De Vaux</h1>
+          <div class="masthead-sub">Formerly Damian Rusecki</div>
+          <p class="masthead-desc">A working coverage sheet of my finance projects: DCF models, investment cases, startup advisory work, and property analysis, updated as new work is finished.</p>
+        </div>
+        <div class="masthead-links">
+          <a href="mailto:dr555@exeter.ac.uk">dr555@exeter.ac.uk</a>
+          <a href="https://www.linkedin.com/in/damiandevaux" target="_blank" rel="noopener">linkedin.com/in/damiandevaux</a>
+        </div>
       </div>
     </div>
   </header>
@@ -466,102 +462,49 @@
         </div>
         <p class="section-intro">Financial models and analysis pieces, presented as coverage notes. Each links to the underlying PDF once finalized.</p>
 
-        <div class="note">
-          <div class="note-top">
-            <div>
+        <div class="coverage-list">
+          <div class="coverage-row">
+            <div class="row-name">
               <span class="card-ticker">PROP &middot; HMO</span>
-              <h3>126 Pinhoe Road, Exeter &mdash; HMO Investment Analysis</h3>
+              <h3>Real Estate</h3>
             </div>
-            <span class="badge badge-live">Live</span>
-          </div>
-          <div class="note-sub">4-Bed Terrace, Class C4 &middot; EX4 7HJ</div>
-
-          <p>An acquisition analysis for an already-licensed 4-bedroom HMO between Exeter's two university campuses. The property holds a certificate of lawfulness for 4 unrelated occupants (Class C4) and has planning potential for a 5th bedroom via conversion of the ground-floor living room.</p>
-
-          <ul>
-            <li>Four comparable sales on the same street in the prior 18 months averaged &pound;301,000 (range &pound;294,000&ndash;&pound;315,000), all sold in better condition than this property, which needs a substantial refurbishment.</li>
-            <li>Modeled across both the &pound;325,000 asking price and a &pound;270,000 negotiated price, and both the existing 4-bed layout and a 5-bed layout with the living-room conversion, using a shared refurbishment budget (&pound;35,995 for 4-bed, &pound;43,470 for 5-bed) and consistent financing assumptions (75% LTV, 5.5% mortgage rate, 12% management fee).</li>
-            <li>Returns benchmarked against 8% gross yield, 6% net yield, and 8% cash-on-cash ROI targets.</li>
-          </ul>
-
-          <div class="note-table-wrap">
-            <table>
-              <caption>Returns by scenario</caption>
-              <thead>
-                <tr>
-                  <th>Scenario</th>
-                  <th>Gross yield</th>
-                  <th>Net yield</th>
-                  <th>Cash-on-cash ROI</th>
-                  <th>Targets met</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>4-bed, asking &pound;325k</td>
-                  <td>8.49%</td>
-                  <td class="fail">2.07%</td>
-                  <td class="fail">4.68%</td>
-                  <td>1 of 3</td>
-                </tr>
-                <tr>
-                  <td>4-bed, negotiated &pound;270k</td>
-                  <td>10.22%</td>
-                  <td class="fail">3.33%</td>
-                  <td class="fail">7.22%</td>
-                  <td>1 of 3</td>
-                </tr>
-                <tr>
-                  <td>5-bed, asking &pound;325k</td>
-                  <td>10.52%</td>
-                  <td class="fail">3.74%</td>
-                  <td class="pass">8.03%</td>
-                  <td>2 of 3</td>
-                </tr>
-                <tr>
-                  <td>5-bed, negotiated &pound;270k</td>
-                  <td class="pass">14.22%</td>
-                  <td class="pass">7.27%</td>
-                  <td class="pass">14.59%</td>
-                  <td>3 of 3</td>
-                </tr>
-              </tbody>
-            </table>
+            <p class="row-desc">Acquisition analysis for an already-licensed 4-bed HMO in Exeter (126 Pinhoe Road), modeled across financing and layout scenarios against yield and ROI targets.</p>
+            <div class="row-status"><span class="badge badge-live">Live</span></div>
+            <div class="row-docs">
+              <a href="documents/pinhoe-road-hmo-analysis.pdf" target="_blank">Full model (PDF)</a>
+              <a href="documents/pinhoe-road-hmo-valuation.pdf" target="_blank">Valuation detail (PDF)</a>
+              <a href="documents/pinhoe-road-hmo-presentation.pdf" target="_blank">Investor deck (PDF)</a>
+            </div>
           </div>
 
-          <div class="note-downloads">
-            <a href="documents/pinhoe-road-hmo-analysis.pdf" target="_blank">Full model (PDF)</a>
-            <a href="documents/pinhoe-road-hmo-valuation.pdf" target="_blank">Valuation detail (PDF)</a>
-            <a href="documents/pinhoe-road-hmo-presentation.pdf" target="_blank">Investor deck (PDF)</a>
-          </div>
-        </div>
-
-        <div class="coverage-grid">
-          <div class="card">
-            <div class="card-top">
+          <div class="coverage-row is-pending">
+            <div class="row-name">
               <span class="card-ticker">MODL &middot; DCF</span>
-              <span class="badge badge-pending">Coming soon</span>
+              <h3>DCF Models</h3>
             </div>
-            <h3>DCF Models</h3>
-            <p class="coming-soon">Discounted cash flow models. Write-up and downloadable PDF pending.</p>
+            <p class="row-desc coming-soon">Write-up and downloadable PDF pending.</p>
+            <div class="row-status"><span class="badge badge-pending">Coming soon</span></div>
+            <div class="row-docs"><span class="none">None yet</span></div>
           </div>
 
-          <div class="card">
-            <div class="card-top">
+          <div class="coverage-row is-pending">
+            <div class="row-name">
               <span class="card-ticker">CASE &middot; INVC</span>
-              <span class="badge badge-pending">Coming soon</span>
+              <h3>Investment Case</h3>
             </div>
-            <h3>Investment Case</h3>
-            <p class="coming-soon">Investment case write-up. Details and downloadable PDF pending.</p>
+            <p class="row-desc coming-soon">Write-up and downloadable PDF pending.</p>
+            <div class="row-status"><span class="badge badge-pending">Coming soon</span></div>
+            <div class="row-docs"><span class="none">None yet</span></div>
           </div>
 
-          <div class="card">
-            <div class="card-top">
+          <div class="coverage-row is-pending">
+            <div class="row-name">
               <span class="card-ticker">ADVY &middot; STUP</span>
-              <span class="badge badge-pending">Coming soon</span>
+              <h3>Startup Advisory Models</h3>
             </div>
-            <h3>Startup Advisory Models</h3>
-            <p class="coming-soon">Advisory models built for startups. Details and downloadable PDF pending.</p>
+            <p class="row-desc coming-soon">Write-up and downloadable PDF pending.</p>
+            <div class="row-status"><span class="badge badge-pending">Coming soon</span></div>
+            <div class="row-docs"><span class="none">None yet</span></div>
           </div>
         </div>
       </div>
@@ -573,7 +516,7 @@
           <span class="section-tag">02</span>
           <h2>Presentations</h2>
         </div>
-        <div class="card" style="max-width: 480px;">
+        <div class="card">
           <div class="card-top">
             <span class="card-ticker">PRES &middot; UMNIC</span>
             <span class="badge badge-pending">Coming soon</span>
@@ -590,7 +533,7 @@
           <span class="section-tag">03</span>
           <h2>About</h2>
         </div>
-        <div class="card" style="max-width: 480px;">
+        <div class="card">
           <div class="card-top">
             <span class="card-ticker">BIO</span>
             <span class="badge badge-pending">Coming soon</span>
